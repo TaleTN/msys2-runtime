@@ -912,7 +912,7 @@ win32env_to_cygenv (PWCHAR rawenv, bool posify)
   char *newp;
   int i;
   const char cygterm[] = "TERM=cygwin";
-  const char xterm[] = "TERM=xterm-256color";
+  const char xterm[] = "TERM=xterm";
   char *tmpbuf = tp.t_get ();
   PWCHAR w;
 
@@ -956,7 +956,7 @@ win32env_to_cygenv (PWCHAR rawenv, bool posify)
       debug_printf ("%p: %s", envp[i], envp[i]);
     }
 
-  /* If console has 24 bit color capability, TERM=xterm-256color,
+  /* If console has 24 bit color capability, TERM=xterm,
      otherwise, TERM=cygwin */
   if (!sawTERM)
     envp[i++] = strdup (wincap.has_con_24bit_colors () ? xterm : cygterm);
